@@ -3,13 +3,26 @@ console.log("Hello World");
 // Computer's choice
 function getComputerChoice() {
     
-    let computerChoice = Math.random();
+    let rand = Math.random();
 
-    if (computerChoice <= 0.33) {
-        return computerChoice = 'rock';
-    } else if (computerChoice >= 0.34 && computerChoice <= 0.66) {
-        return computerChoice = 'paper';
+    if (rand <= 0.33) {
+        return 'rock';
+    } else if (rand >= 0.34 && rand <= 0.66) {
+        return 'paper';
     } else {
-        return computerChoice = 'scissors';
+        return 'scissors';
+    }
+}
+
+function getHumanChoice() {
+
+    let input = prompt("Rock, Paper, Scissors?")
+
+    if (input.toLowerCase() === "rock") {
+        return "rock";
+    } else if (input.toLowerCase() === "paper") {
+        return "paper";
+    } else {
+        return "scissors";
     }
 }
