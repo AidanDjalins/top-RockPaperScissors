@@ -1,4 +1,7 @@
-console.log("Hello World");
+// Declare the player and computer's score
+
+let humanScore = 0;
+let computerScore = 0;
 
 // Computer's choice
 function getComputerChoice() {
@@ -6,11 +9,11 @@ function getComputerChoice() {
     let rand = Math.random();
 
     if (rand <= 0.33) {
-        return 'rock';
-    } else if (rand >= 0.34 && rand <= 0.66) {
-        return 'paper';
+        return "rock";
+    } else if (rand <= 0.66) {
+        return "paper";
     } else {
-        return 'scissors';
+        return "scissors";
     }
 }
 
@@ -26,3 +29,41 @@ function getHumanChoice() {
         return "scissors";
     }
 }
+
+function playRound(humanChoice, computerChoice) {
+
+    let result = '';
+
+    console.log("You chose: ", humanChoice)
+    console.log("CPU chose: ", computerChoice)
+
+    if (humanChoice === computerChoice) {
+        result = "It's a draw!"
+    } else {
+        switch(humanChoice) {
+            case "rock":
+                result = (computerChoice === "scissors") ? "You Win!" : "You Lose..";
+                break;
+            case "paper":
+                result = (computerChoice === "rock") ? "You Win!" : "You Lose..";
+                break;
+            case "scissors":
+                result = (computerChoice === "paper") ? "You Win!" : "You Lose..";
+                break;
+        }
+    }
+
+    switch(result) {
+        case "You Win!":
+            humanScore++;
+            break;
+        case "You Lose..":
+            computerScore++;
+            break;
+    }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
