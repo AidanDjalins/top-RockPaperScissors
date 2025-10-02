@@ -1,7 +1,4 @@
-// Declare the player and computer's score
 
-let humanScore = 0;
-let computerScore = 0;
 
 // Computer's choice
 function getComputerChoice() {
@@ -30,40 +27,59 @@ function getHumanChoice() {
     }
 }
 
-function playRound(humanChoice, computerChoice) {
+// Play the game!
+function playGame() {
 
-    let result = '';
+    // Declare the player and computer's score
+    let humanScore = 0;
+    let computerScore = 0;
 
-    console.log("You chose: ", humanChoice)
-    console.log("CPU chose: ", computerChoice)
+    // Decide how many rounds will be played
+    let rounds = prompt("How many rounds do you wanna play?")
 
-    if (humanChoice === computerChoice) {
-        result = "It's a draw!"
-    } else {
-        switch(humanChoice) {
-            case "rock":
-                result = (computerChoice === "scissors") ? "You Win!" : "You Lose..";
-                break;
-            case "paper":
-                result = (computerChoice === "rock") ? "You Win!" : "You Lose..";
-                break;
-            case "scissors":
-                result = (computerChoice === "paper") ? "You Win!" : "You Lose..";
-                break;
-        }
+    for(let i = 0; i < rounds; i++){
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
     }
 
-    switch(result) {
-        case "You Win!":
-            humanScore++;
-            break;
-        case "You Lose..":
-            computerScore++;
-            break;
+    // Function for one round
+    function playRound(humanChoice, computerChoice) {
+    
+        let result = '';
+    
+        console.log("You chose: ", humanChoice)
+        console.log("CPU chose: ", computerChoice)
+    
+        if (humanChoice === computerChoice) {
+            result = "It's a draw!"
+        } else {
+            switch(humanChoice) {
+                case "rock":
+                    result = (computerChoice === "scissors") ? "You Win!" : "You Lose..";
+                    break;
+                case "paper":
+                    result = (computerChoice === "rock") ? "You Win!" : "You Lose..";
+                    break;
+                case "scissors":
+                    result = (computerChoice === "paper") ? "You Win!" : "You Lose..";
+                    break;
+            }
+        }
+    
+        switch(result) {
+            case "You Win!":
+                humanScore++;
+                break;
+            case "You Lose..":
+                computerScore++;
+                break;
+        }
+    
+        console.log(result);
+        console.log(`Score -> You: ${humanScore}, Computer: ${computerScore}`);
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+console.log(playGame());
