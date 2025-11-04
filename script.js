@@ -1,5 +1,7 @@
 playerDisplay = document.getElementById("playerDisplay");
 computerDisplay = document.getElementById("computerDisplay");
+playerScoreDisplay = document.getElementById("playerScoreDisplay");
+computerScoreDisplay = document.getElementById("computerScoreDisplay");
 finalResult = document.getElementById("finalResult");
 
 // Declare the player and computer's score
@@ -52,10 +54,19 @@ function playRound(humanChoice) {
     switch(result) {
         case "YOU WIN!":
             humanScore++;
+            playerScoreDisplay.textContent = `${humanScore}`;
             break;
         case "You Lose..":
             computerScore++;
+            computerScoreDisplay.textContent = `${computerScore}`;
             break;
+    }
+
+    if (humanScore === 5 || computerScore === 5) {
+        const winner = (humanScore === 5) ? "PLAYER" : "CPU";
+        finalResult.textContent = `${winner} WINS THE GAME!`;
+
+        
     }
 
     console.log(result);
